@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="陪月书"><title>函数式与范畴论随记[0] · 陪月书的博客</title><meta name="description" content="相关概念：
+1.代数系统：元素与函数的组合
+2.函数是一种关系
+3.群是一个二元代数系统
+4.图是表达一个集合上二元关系的一种手段，用来处理离散数学模型的一个工具，对象就是结点，函数就是箭头
+5.函子就是图到图的图同态，即是范畴到范畴的一种函数，它保恒等和结合，保持仍然是范畴
+6.范畴是一个图，它带"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">陪月书的博客</a></h3><div class="description"><p>有的人20岁就死了,80岁才埋</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>函数式与范畴论随记[0]</a></h3></div><div class="post-content"><p>相关概念：</p>
+<p>1.代数系统：元素与函数的组合</p>
+<p>2.函数是一种关系</p>
+<p>3.群是一个二元代数系统</p>
+<p>4.图是表达一个集合上二元关系的一种手段，用来处理离散数学模型的一个工具，对象就是结点，函数就是箭头</p>
+<p>5.函子就是图到图的图同态，即是范畴到范畴的一种函数，它保恒等和结合，保持仍然是范畴</p>
+<p>6.范畴是一个图，它带有两个满足恒等性和结合性的函数，identity、函数组合</p>
+<p>7.自函子：映射到自身的</p>
+<p>8.Monad:一个自函子范畴上的幺半群，当相同类型的嵌套时，可以通过自函子将函子里的数据“剥出来”</p>
+<p>9.[幺半群][1]是一个带有二元运算: M × M → M 的集合 M ，其符合下列公理：</p>
+<p>结合律：对任何在 M 内的a、b、c， (ab)c = a(bc) 。</p>
+<p>单位元：存在一在 M 内的元素e，使得任一于 M 内的 a 都会符合 ae = e*a = a 。</p>
+<p>9.applicative functor 简单来说Monad是context sensitive, 而Applicative是context free的。作为一个接口，它能为我们带来什么：那就是让不同 functor 可以相互应用（apply）的能力。是实现了ap方法的 pointed functor。F.of(x).map(f) == F.of(f).ap(F.of(x)</p>
+<p>10.lift</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> liftA2 = curry(<span class="function"><span class="keyword">function</span>(<span class="params">f, functor1, functor2</span>)</span>&#123;returnfunctor1.map(f).ap(functor2);&#125;);</span><br></pre></td></tr></table></figure>
+<p>liftA2是个奇怪的名字，听起来像是破败工厂里挑剔的货运电梯，或者伪豪华汽车公司的个性车牌。不过你要是真正理解了，那么它的含义也就不证自明了：让那些小代码块发生 lift，成为 applicative functor 中的一员。</p>
+<p>特性：</p>
+<p>1.范畴中的所有元素，都拥有自函子，或者可以将一个对象看为自函子。</p>
+<p>相关应用：</p>
+<p>1.一个函数式语言有：</p>
+<p>1）原始数据类型</p>
+<p>2）每个类型的常量（单位元）</p>
+<p>3）运算，相当于代数系统中的函数</p>
+<p>4）构造器，它们可以作用到数据类型和运算以产生导出的数据类型和运算</p>
+<p>语言由从原始数据类型和原始运算能导出的所有的运算和类型的集合组成。</p>
+<p>2.结合1中的描述，函数式语言的数据是不可变的，因为我们只需要获得数据映射之后的结果，如果可以变化，那么就不是函数式了，就变成了混沌态编程;</p>
+<p>所以也不能自己赋值变量，也不存在变量这个说法;</p>
+<p>函数和元素都作为最基本的元素，但是在应用中，我们只能通过对范畴的各种操作（函子，或者单纯元素间的函数）来组合出我们想要的功能，所以函数是“一等公民”。</p>
+<p>3.范畴学最厉害的地方就是组合，对任何链接的对象组，a-&gt;b-&gt;c 一定有存在一个组合可以直接 a -&gt; c</p>
+<p>对于函数式编程，最精髓的地方就是函数组合，通过组合函数，完成更加抽像复杂的函数。</p>
+<p>感悟：</p>
+<p>我们太多的被命令式语言毒害了，在以后的实践中，多利用函数式，我们应该多考虑问题本身，而不是在如何实现方面。</p>
+<p>目前在函数式中，有多种做法，因为对范畴的理解也不经相同，想更加了解函数式编程应该去，用一下Haskell，因为它已经有很久的历史了，也统一了很多标准，有用的留下，没用的废弃，当我们用Haskell完成几个项目之后，能更有所了解。</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-12-25</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://yoursite.com/2017/12/25/函数式与范畴论随记-0/,陪月书的博客,函数式与范畴论随记[0],;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"></ul></div><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.1.7/dist/Valine.min.js?v=undefined"></script><script>var valine = new Valine({
+  el:'#vcomments',
+  notify:false || false, 
+  verify:false|| false, 
+  app_id:'rqu357CKMidPy7qDuGt8zzwm-gzGzoHsz',
+  app_key:'VXuNpxAGc5itkNDLdWWm9h31',
+  placeholder:'Post a comment',
+  path: window.location.pathname,
+  avatar:'mm'
+})</script></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
