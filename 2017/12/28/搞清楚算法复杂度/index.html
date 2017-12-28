@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="陪月书"><title>搞清楚算法复杂度 · 陪月书的博客</title><meta name="description" content="三种符号：
+
+Θ : theta, 西塔
+Ο : omikron, 奥秘可容
+Ω : omiga, 哦米噶
+theta(g(n)) 表示一个集合：
+存在正常量c1, c2 和 n0，使得所有n&amp;gt;= n0， 有 0 &amp;lt;= c1g(n) &amp;lt;= f(n) &amp;lt;= c2g(n)
+即th"><meta name="keywords" content="Web, FE, MachineLearning, DeepLearning"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">陪月书的博客</a></h3><div class="description"><p>有的人20岁就死了，80岁才埋</p></div></div></div><ul class="social-links"><li><a href="http://github.com/Yulight1401"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">Home</a></li><li><a href="/about">Sobre</a></li><li><a href="/archives">Arquivo</a></li><li><a href="/links">Links</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/myIcon.jpeg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>搞清楚算法复杂度</a></h3></div><div class="post-content"><blockquote>
+<p>三种符号：</p>
+</blockquote>
+<p>Θ : theta, 西塔</p>
+<p>Ο : omikron, 奥秘可容</p>
+<p>Ω : omiga, 哦米噶</p>
+<p>theta(g(n)) 表示一个集合：</p>
+<p>存在正常量c1, c2 和 n0，使得所有n&gt;= n0， 有 0 &lt;= c1g(n) &lt;= f(n) &lt;= c2g(n)</p>
+<p>即theta表示一个渐进函数，使得目标函数可以使用常数c1,c2夹逼在渐进函数中。</p>
+<p>omikron 存在常数和函数，c,n0和g，则表示目标函数的上界函数，即目标函数f(n) &lt;= cg(n), n &gt;= n0</p>
+<p>omiga 存在常数和函数，c,n0和g，则表示目标函数的下界函数，即目标函数f(n) &gt;= cg(n), n &gt;= n0</p>
+<blockquote>
+<p>等式和不等式的渐进符号</p>
+</blockquote>
+<p>ο: 小omikron, 定义与大omikron相似，区别在于，对于任意常数c，都有0 &lt;= f(n) &lt; cg(n)</p>
+<p>ω: 小omiga, 定义相似，区别在于，对于任意常数c，都有 0&lt;= cg(n) &lt; f(n)</p>
+<blockquote>
+<p>常用函数与记号关系</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">e**x = 1 + x + theta(x**2)</span><br><span class="line"></span><br><span class="line">// 多项式</span><br><span class="line">p(n) = theta(n**d) &lt;- sum[i=0 -&gt; d](n ** i)</span><br><span class="line"></span><br><span class="line">lg b n = 小omikron(n**a)</span><br><span class="line"></span><br><span class="line">lg(n!) = theta(nlgn)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>分析算法</p>
+</blockquote>
+<p>最坏情况： 该算法的算法时间的一个上界。<br>平均情况： 算法运行时间的平均情况。</p>
+<p>我们在非概率影响的算法，往往讨论它的最坏情况，因为它的衡量效果最好。</p>
+<p>对于两个算法来讲，我们往往用它的增长速度来衡量算法的好坏。</p>
+<p>例如 theta(n<strong>3) 比 theta(n</strong>2) 差。</p>
+<blockquote>
+<p>例子</p>
+</blockquote>
+<ol>
+<li>对于插入排序的最坏情况有表达式</li>
+</ol>
+<p>T(n) = an**2 + bn + c</p>
+<p>则theta(T(n)) = theta(n**2)</p>
+<ol>
+<li>对于递归算法</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">T(n) = &#123;</span><br><span class="line">    c : n = 1</span><br><span class="line">    2T(n / 2) + cn : n &gt; 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>(1) 构造递归树来分析算法：</p>
+<p>构造递归树，发现树的高度为lgn, 每层消耗cn, 加上根节点消耗， 就有总消耗</p>
+<p>T(n) = cnlgn + cn, 即 theta(nlgn)</p>
+<p>(2) 利用主方法求解</p>
+<p>求解 T(n) = aT(n / b) + f(n) 形式的递归函数 a &gt;= 1, b &gt; 1</p>
+<p>1.对于某个常数e &gt; 0, 有f(n) = O(n <strong> logb(a - e)), 则 T(n) = O(n</strong>logb(a))</p>
+<ol>
+<li><p>若f(n) = theta(n<strong>logb(a)), 则 T(n) = theta(n</strong>logb(a) * lgn)</p>
+</li>
+<li><p>若对e&gt;0,有f(n) = omiga(n**logb(a+e)), 且对某个常数c&lt;1和足够大的n有af(n / b) &lt;= cf(n), 则T(n) = theta(f(n))</p>
+</li>
+</ol>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-12-28</span><i class="fa fa-tag"></i><a href="/tags/算法/" title="算法" class="tag">算法 </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://yoursite.com/2017/12/28/搞清楚算法复杂度/,陪月书的博客,搞清楚算法复杂度,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a role="navigation" href="/2017/12/25/函数式与范畴论随记-0/" title="函数式与范畴论随记[0]" class="btn">Próximo post</a></li></ul></div><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.1.7/dist/Valine.min.js?v=undefined"></script><script>var valine = new Valine({
+  el:'#vcomments',
+  notify:false || false, 
+  verify:false|| false, 
+  app_id:'rqu357CKMidPy7qDuGt8zzwm-gzGzoHsz',
+  app_key:'VXuNpxAGc5itkNDLdWWm9h31',
+  placeholder:'Post a comment',
+  path: window.location.pathname,
+  avatar:'mm'
+})</script></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
